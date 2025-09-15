@@ -1,1 +1,47 @@
-.env 
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Flutter/Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+
+# Android
+/android/app/build/
+/android/build/
+/android/.gradle/
+/android/app/src/main/jniLibs/
+*.keystore
+
+# iOS
+/ios/Pods/
+/ios/Flutter/App.framework
+/ios/Flutter/Flutter.framework
+/ios/Flutter/engine/
+/ios/Flutter/flutter_assets/
+/ios/build/
+/ios/DerivedData/
+.ios/
+
+# Web
+/web/build/
+
+# ignore the .env file
+.env
