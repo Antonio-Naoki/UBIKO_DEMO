@@ -24,6 +24,8 @@ dependencies:
   provider: ^6.1.2
   google_maps_flutter: ^2.13.1
   flutter_dotenv: ^6.0.0
+  introduction_screen: ^4.0.0
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:
@@ -34,3 +36,4 @@ flutter:
   uses-material-design: true
   assets:
     - .env
+    - assets/images/
