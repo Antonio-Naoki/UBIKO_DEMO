@@ -1,9 +1,9 @@
-
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:myapp/main_screen.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -25,43 +25,139 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const pageDecoration = PageDecoration(
-      titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
-      bodyTextStyle: TextStyle(fontSize: 19.0),
-      bodyPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-      pageColor: Colors.white,
-      imagePadding: EdgeInsets.zero,
-    );
-
     return IntroductionScreen(
       key: introKey,
       globalBackgroundColor: Colors.white,
       pages: [
+        // PÁGINA 1
         PageViewModel(
-          title: "Browse all the category",
-          body: "In aliquip aute exercitation ut et nisi ut mollit. Deserunt dolor elit pariatur aute.",
-          image: Image.asset('assets/images/onboarding_image.png', width: 350.0),
-          decoration: pageDecoration,
+          titleWidget: const SizedBox.shrink(),
+          bodyWidget: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.45,
+                child: Image.asset(
+                  'assets/images/onboarding_image_1.png',
+                  fit: BoxFit.contain,
+                ),
+              ),
+              const SizedBox(height: 24),
+              Text(
+                "BIENVENIDO A UBIKO",
+                style: GoogleFonts.roboto(
+                  fontSize: 14,
+                  color: Colors.grey,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 1.2,
+                ),
+              ),
+              const SizedBox(height: 12),
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  style: GoogleFonts.roboto(
+                    fontSize: 28,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  children: const [
+                    TextSpan(text: "Vamos a acercarte\nMas "),
+                    TextSpan(
+                      text: "Tu hogar ideal",
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          decoration: const PageDecoration(
+            pageColor: Colors.white,
+            bodyAlignment: Alignment.center,
+          ),
         ),
+
+        // PÁGINA 2
         PageViewModel(
-          title: "Amazing Discounts & Offers",
-          body: "In aliquip aute exercitation ut et nisi ut mollit. Deserunt dolor elit pariatur aute.",
-          image: Image.asset('assets/images/onboarding_image.png', width: 350.0),
-          decoration: pageDecoration,
+          titleWidget: const SizedBox.shrink(),
+          bodyWidget: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.45,
+                child: Image.asset(
+                  'assets/images/onboarding_image.png',
+                  fit: BoxFit.contain,
+                ),
+              ),
+              const SizedBox(height: 24),
+              Text(
+                "Encuentra propiedades a tu manera",
+                style: GoogleFonts.roboto(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                "Personaliza tu búsqueda con filtros detallados: desde el número de habitaciones y baños hasta el precio y las comodidades.",
+                style:
+                    GoogleFonts.roboto(fontSize: 16, color: Colors.grey[700]),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+          decoration: const PageDecoration(
+            pageColor: Colors.white,
+            bodyAlignment: Alignment.center,
+          ),
         ),
+
+        // PÁGINA 3
         PageViewModel(
-          title: "Delivery to your door",
-          body: "In aliquip aute exercitation ut et nisi ut mollit. Deserunt dolor elit pariatur aute.",
-          image: Image.asset('assets/images/onboarding_image.png', width: 350.0),
-          decoration: pageDecoration,
+          titleWidget: const SizedBox.shrink(),
+          bodyWidget: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.45,
+                child: Image.asset(
+                  'assets/images/onboarding_image.png',
+                  fit: BoxFit.contain,
+                ),
+              ),
+              const SizedBox(height: 24),
+              Text(
+                "Conéctate con el experto correcto",
+                style: GoogleFonts.roboto(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                "Habla directamente con agentes inmobiliarios, solicita visitas y consigue respuestas a tus preguntas. Nuestro equipo de profesionales está aquí para guiarte en cada paso.",
+                style:
+                    GoogleFonts.roboto(fontSize: 16, color: Colors.grey[700]),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+          decoration: const PageDecoration(
+            pageColor: Colors.white,
+            bodyAlignment: Alignment.center,
+          ),
         ),
       ],
       onDone: () => _onIntroEnd(context),
       onSkip: () => _onIntroEnd(context),
       showSkipButton: true,
-      skip: const Text('Skip'),
+      skip: const Text('Saltar'),
       next: const Icon(Icons.arrow_forward),
-      done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600)),
+      done: const Text('Hecho', style: TextStyle(fontWeight: FontWeight.w600)),
       dotsDecorator: const DotsDecorator(
         size: Size(10.0, 10.0),
         color: Color(0xFFBDBDBD),
