@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:myapp/core/config/theme/app_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:myapp/main_screen.dart';
@@ -155,12 +156,26 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       onDone: () => _onIntroEnd(context),
       onSkip: () => _onIntroEnd(context),
       showSkipButton: true,
-      skip: const Text('Saltar'),
-      next: const Icon(Icons.arrow_forward),
-      done: const Text('Hecho', style: TextStyle(fontWeight: FontWeight.w600)),
+      skip: Text(
+        'Saltar',
+        style: TextStyle(
+          color: AppColors.textOnboardingPage, // 👈 usando tu clase de colores
+        ),
+      ),
+      next: Icon(
+        Icons.arrow_forward,
+        color: AppColors.textOnboardingPage, // 👈 también la flecha
+      ),
+      done: Text(
+        'Hecho',
+        style: TextStyle(
+          fontWeight: FontWeight.w600,
+          color: AppColors.textOnboardingPage, // 👈 usando tu clase de colores
+        ),
+      ),
       dotsDecorator: const DotsDecorator(
         size: Size(10.0, 10.0),
-        color: Color(0xFFBDBDBD),
+        color: AppColors.textOnboardingPage,
         activeSize: Size(22.0, 10.0),
         activeShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(25.0)),
