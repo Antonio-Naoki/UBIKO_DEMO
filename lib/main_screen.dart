@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:myapp/core/config/theme/app_colors.dart';
 import 'package:myapp/map_page.dart';
 import 'package:myapp/profile_page.dart';
 import 'package:myapp/settings_page.dart';
@@ -65,6 +65,9 @@ class _MainScreenState extends State<MainScreen> {
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
+        selectedItemColor: AppColors.primaryColor, // 👈 color del botón seleccionado
+        unselectedItemColor: AppColors.textProfileUserPage, // 👈 color de los demás
+        backgroundColor: AppColors.primaryTextColor, // 👈 color de fondo de la barra
       ),
     );
   }

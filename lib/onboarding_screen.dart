@@ -28,7 +28,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return IntroductionScreen(
       key: introKey,
-      globalBackgroundColor: Colors.white,
+      globalBackgroundColor: AppColors.primaryTextColor,
       pages: [
         // PÁGINA 1
         PageViewModel(
@@ -48,7 +48,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 "BIENVENIDO A UBIKO",
                 style: GoogleFonts.roboto(
                   fontSize: 14,
-                  color: Colors.grey,
+                  color: AppColors.primaryCircleUser,
                   fontWeight: FontWeight.w900,
                   letterSpacing: 1.2,
                 ),
@@ -59,7 +59,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 text: TextSpan(
                   style: GoogleFonts.roboto(
                     fontSize: 28,
-                    color: Colors.black,
+                    color: AppColors.textProfileUserPage,
                     fontWeight: FontWeight.bold,
                   ),
                   children: const [
@@ -74,7 +74,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ],
           ),
           decoration: const PageDecoration(
-            pageColor: Colors.white,
+            pageColor: AppColors.primaryTextColor,
             bodyAlignment: Alignment.center,
           ),
         ),
@@ -88,7 +88,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.45,
                 child: Image.asset(
-                  'assets/images/onboarding_image.png',
+                  'assets/images/onboarding_image_2.png',
                   fit: BoxFit.contain,
                 ),
               ),
@@ -98,6 +98,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 style: GoogleFonts.roboto(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
+                  color: AppColors.textProfileUserPage,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -111,7 +112,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ],
           ),
           decoration: const PageDecoration(
-            pageColor: Colors.white,
+            pageColor: AppColors.primaryTextColor,
             bodyAlignment: Alignment.center,
           ),
         ),
@@ -125,7 +126,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.45,
                 child: Image.asset(
-                  'assets/images/onboarding_image.png',
+                  'assets/images/onboarding_image_3.jpg',
                   fit: BoxFit.contain,
                 ),
               ),
@@ -135,6 +136,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 style: GoogleFonts.roboto(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
+                  color: AppColors.textProfileUserPage,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -148,7 +150,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ],
           ),
           decoration: const PageDecoration(
-            pageColor: Colors.white,
+            pageColor: AppColors.primaryTextColor,
             bodyAlignment: Alignment.center,
           ),
         ),

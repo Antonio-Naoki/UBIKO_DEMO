@@ -8,9 +8,11 @@ import 'package:myapp/onboarding_screen.dart';
 import './location_bloc.dart';
 import './location_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await dotenv.load(fileName: ".env");
 
   final prefs = await SharedPreferences.getInstance();

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:myapp/core/config/theme/app_colors.dart';
 import 'package:myapp/features/map/presentation/bloc/map_bloc.dart';
 import 'package:myapp/injection_container.dart';
 
@@ -25,7 +26,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Real-Time Location Tracker',
+            'Ubiko App',
             style: theme.textTheme.titleLarge?.copyWith(
               color: theme.colorScheme.onPrimary,
               fontWeight: FontWeight.bold,
@@ -45,7 +46,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
           },
           builder: (context, state) {
             if (state is MapLoading || state is MapInitial) {
-              return const _LoadingWidget(message: 'Finding your location...');
+              return const _LoadingWidget(message: 'Encontrar tu ubicación...');
             } else if (state is MapLoaded) {
               return FlutterMap(
                 mapController: _mapController,
@@ -86,7 +87,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
               );
             } else {
               return _ErrorWidget(
-                message: 'An unexpected error occurred. Please try again.',
+                message: 'Se produjo un error inesperado. Por favor inténtalo de nuevo.',
                 onRetry: () {
                   context.read<MapBloc>().add(GetCurrentLocationEvent());
                 },
@@ -168,7 +169,7 @@ class _PulsingMarkerState extends State<_PulsingMarker> with TickerProviderState
             height: 20,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Colors.white,
+              color: AppColors.primaryTextColor,
               border: Border.all(color: widget.color, width: 3),
             ),
           ),
@@ -239,7 +240,7 @@ class _ErrorWidget extends StatelessWidget {
             ElevatedButton.icon(
               onPressed: onRetry,
               icon: const Icon(Icons.refresh),
-              label: const Text('Try Again'),
+              label: const Text('Intentar otra vez'),
               style: ElevatedButton.styleFrom(
                 foregroundColor: theme.colorScheme.onError,
                 backgroundColor: theme.colorScheme.error,

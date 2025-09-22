@@ -3,7 +3,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:myapp/core/config/theme/app_colors.dart';
 import './location_bloc.dart';
+import './utils/custom_marker.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -29,6 +31,7 @@ class _MapPageState extends State<MapPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ubiko'),
+        backgroundColor: AppColors.primaryColor, // 👈 color aquí
       ),
       body: Stack(
         children: [
@@ -49,29 +52,38 @@ class _MapPageState extends State<MapPage> {
               } else if (state is LocationLoaded) {
                 final position =
                     LatLng(state.position.latitude, state.position.longitude);
-                return GoogleMap(
-                  onMapCreated: (GoogleMapController controller) {
-                    _mapController = controller;
-                  },
-                  initialCameraPosition: CameraPosition(
-                    target: position,
-                    zoom: 15.0,
-                  ),
-                  markers: {
-                    Marker(
-                      markerId: const MarkerId('currentLocation'),
-                      position: position,
-                      infoWindow: const InfoWindow(
-                        title: 'You are here',
+
+                return FutureBuilder<BitmapDescriptor>(
+                  future: createUserMarker(), // 👈 icono personalizado
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+
+                    return GoogleMap(
+                      onMapCreated: (GoogleMapController controller) {
+                        _mapController = controller;
+                      },
+                      initialCameraPosition: CameraPosition(
+                        target: position,
+                        zoom: 15.0,
                       ),
-                      icon: BitmapDescriptor.defaultMarkerWithHue(
-                          BitmapDescriptor.hueRed),
-                    ),
-                  },
-                  gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-                    Factory<EagerGestureRecognizer>(
-                      () => EagerGestureRecognizer(),
-                    ),
+                      markers: {
+                        Marker(
+                          markerId: const MarkerId('currentLocation'),
+                          position: position,
+                          infoWindow: const InfoWindow(
+                            title: 'Usted está aquí',
+                          ),
+                          icon: snapshot.data!, // 👈 marcador personalizado
+                        ),
+                      },
+                      gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+                        Factory<EagerGestureRecognizer>(
+                          () => EagerGestureRecognizer(),
+                        ),
+                      },
+                    );
                   },
                 );
               } else if (state is LocationError) {
@@ -79,7 +91,7 @@ class _MapPageState extends State<MapPage> {
               } else {
                 return const Center(
                     child: Text(
-                        'Press the location button to fetch your location.'));
+                        'Presione el botón de ubicación para obtener su ubicación.'));
               }
             },
           ),

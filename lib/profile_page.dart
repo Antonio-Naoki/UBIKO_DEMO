@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/core/config/theme/app_colors.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -6,21 +7,21 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.primaryTextColor,
       appBar: AppBar(
         scrolledUnderElevation: 0, // 👈 Evita que se oscurezca al hacer scroll
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.primaryTextColor,
         elevation: 0,
         title: const Text(
           "Perfil",
           style: TextStyle(
-            color: Colors.black,
+            color: AppColors.textProfileUserPage,
             fontWeight: FontWeight.bold,
           ),
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications_none, color: Colors.black),
+            icon: const Icon(Icons.notifications_none, color: AppColors.textProfileUserPage),
             onPressed: () {},
           )
         ],
@@ -39,18 +40,22 @@ class ProfilePage extends StatelessWidget {
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: const Color(0xFF0061FF), // Azul principal
+                  color: AppColors.primaryColor, // Azul principal
                   borderRadius: BorderRadius.circular(8), // cuadrado con bordes redondeados
                 ),
                 padding: const EdgeInsets.all(6),
-                child: const Icon(Icons.edit, color: Colors.white, size: 18),
+                child: const Icon(Icons.edit, color: AppColors.primaryTextColor, size: 18),
               ),
             ],
           ),
           const SizedBox(height: 12),
           const Text(
             "Usuario",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 24, 
+              fontWeight: FontWeight.w600,
+              color: AppColors.textProfileUserPage,
+            ),
           ),
           const SizedBox(height: 16),
           const Divider(thickness: 1, height: 20),
@@ -59,7 +64,7 @@ class ProfilePage extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                _buildProfileOption(Icons.calendar_today_outlined, "Mi reserva"),
+                _buildProfileOption(Icons.favorite_border, "Favoritos"),
                 _buildProfileOption(Icons.payment_outlined, "Pagos"),
                 const Divider(thickness: 1, height: 20),
                 _buildProfileOption(Icons.person_outline, "Perfil"),
@@ -71,10 +76,10 @@ class ProfilePage extends StatelessWidget {
 
                 const SizedBox(height: 12),
                 ListTile(
-                  leading: const Icon(Icons.logout, color: Colors.red),
+                  leading: const Icon(Icons.logout, color: AppColors.textSesionClose),
                   title: const Text(
                     "Cerrar sesión",
-                    style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                    style: TextStyle(color: AppColors.textSesionClose, fontWeight: FontWeight.bold),
                   ),
                   onTap: () {},
                 ),
@@ -88,12 +93,16 @@ class ProfilePage extends StatelessWidget {
 
   Widget _buildProfileOption(IconData icon, String title) {
     return ListTile(
-      leading: Icon(icon, color: Colors.black),
+      leading: Icon(icon, color: AppColors.textProfileUserPage),
       title: Text(
         title,
-        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        style: const TextStyle(
+          fontSize: 16, 
+          fontWeight: FontWeight.w500,
+          color: AppColors.textProfileUserPage,
+        ),
       ),
-      trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.black),
+      trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: AppColors.textProfileUserPage),
       onTap: () {},
     );
   }
